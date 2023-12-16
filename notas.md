@@ -1,38 +1,43 @@
 ## Crear proyecto [React] (https://create-react-app.dev/)
 
-### Con Create React App 
+### Con Create React App
+
     npx create-react-app my-app
     cd my-app
     npm start
 
 ### Con [Vite](https://vitejs.dev/guide/)
 
-
 ## Estructura de proyecto
 
 ### src
+
 En src se pone el codigo, tanto de html css y js
 
 En index.js:
-    
+
 ### public
+
 En public se pone los HTML
 En index.html:
+
 - el id root es necesario en el div del body, asi pedes crear interaces dentro del div
 
 ### package.json
+
 En este archivo esta guardada las versiones de las bibliotecas que se utilizan
 
 ### node_module
+
 Lo utiliza nodejs para las librerias, no se toca
 
 ### Carpeta build
+
 Se crea con npm run build, se utiliza al terminar de desarrollar.
 Esta carpeta es la que se sirve cuando se terminar
 
-
-
 ## Hola Mundo en React
+
 Creamos un index.js en src, es necesario que tenga ese nombre
 index.js
 
@@ -48,11 +53,13 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(<h1>Hola React</h1>);
 
 ## Componentes de React
+
 Los componentes son las partes de la aplicacion, sirven para reutilizarse.
 Hay un componente inicial donde este tiene todo, este componente es el llamado root
 Es necesario que los componentes comiencen con Mayuscula
 
 ## Tu primer componente
+
 Son funciones.
 
     import React from "react";
@@ -85,9 +92,8 @@ Son funciones.
       </div>
     );
 
-
-
 ## JSX
+
 JSX es el lenguaje que une HTML y JavaScript. Al final y al cabo todo se transforma en codigo JavaScript. Simplente es para escribirlo de una manera mas facil para comprenderlo.
 
 Importante: es necesario que todo lo que retorne si son mas de un elemento html, es necesario que tenga un elemento padre
@@ -159,20 +165,19 @@ Importante: es necesario que todo lo que retorne si son mas de un elemento html,
             </>
           </div>
         );
-         
-
 
 ## EcmaScript - Javascript Modules
+
 Para poder varios componentes es necesario dividirlos en diferentes archivos.
 Para poder exportar uan funcion desde otro archivo js, es necesario poner el export antes de la declaracion dela funcion. Tambien se puede exportar de manera por default con el export default nombreFuncion al final del archivo.
 
 Para importar se tiene que hacer como esta manera.
 
 index.js
-        import React from "react";
-        import ReactDOM from "react-dom/client";
-        import { Greeting, UserCard } from "./Greeting";
-        import Product, { Navbar } from "./Product";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Greeting, UserCard } from "./Greeting";
+import Product, { Navbar } from "./Product";
 
         const rootElement = document.getElementById("root");
         const root = ReactDOM.createRoot(rootElement);
@@ -187,13 +192,14 @@ index.js
         );
 
 Product.js
-    function Product() {
-      return (
-        <div>
-          <h1>Producto</h1>
-        </div>
-      );
-    }
+function Product() {
+return (
+
+<div>
+<h1>Producto</h1>
+</div>
+);
+}
 
     export function Navbar() {
       return <nav>Este es el navbar</nav>;
@@ -201,21 +207,21 @@ Product.js
     export default Product;
 
 Greeting.js
-        export function Greeting() {
-          return <h1>Componete de React</h1>;
-        }
+export function Greeting() {
+return <h1>Componete de React</h1>;
+}
 
         export function UserCard() {
           return <h1>User Card</h1>;
         }
 
-
 ## Extension jsx
+
 Para diferenciar los archivos js, con los archivos de componentes de react, se utiliza las extensiones .jsx
 
-
 ## React Props
-Sirve para cambiar datos dentro de un componente. 
+
+Sirve para cambiar datos dentro de un componente.
 Para utilizar parametros del la funcion como atributos de la etiqueta, es necesario utilizar el parametro Props
 
 index.js
@@ -286,9 +292,8 @@ Greeting.jsx
           );
         }
 
-
-
 ## PropTypes y defaultProps
+
 Para conocer los tipos de los parametros de los componetes es necesario instlar prop-types.
 Esto se instala dentor de la carpeta del proyecto.
 
@@ -323,40 +328,212 @@ index.js
         );
 
 Button.jsx
-        import React from "react";
-        import ReactDOM from "react-dom/client";
-        import { Greeting, UserCard, TipoProps } from "./Greeting";
-        import { Button } from "./Button";
-        const rootElement = document.getElementById("root");
-        const root = ReactDOM.createRoot(rootElement);
 
-        root.render(
-          <>
-            <Button text="Click me" />
-            <Button text="Pay" />
-            <Button text="Hi" name="Diferente" />
-            <TipoProps
-              name="Ryan Ray"
-              amount={3000}
-              married={true}
-              points={[99, 33.3, 22.2]}
-              address={{ street: "123 Main Street", city: "New York" }}
-              greet={function () {
-                alert("Hello");
-              }}
-            />
-            <TipoProps />
-          </>
-        );
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+    import { Greeting, UserCard, TipoProps } from "./Greeting";
+    import { Button } from "./Button";
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
 
+            root.render(
+              <>
+                <Button text="Click me" />
+                <Button text="Pay" />
+                <Button text="Hi" name="Diferente" />
+                <TipoProps
+                  name="Ryan Ray"
+                  amount={3000}
+                  married={true}
+                  points={[99, 33.3, 22.2]}
+                  address={{ street: "123 Main Street", city: "New York" }}
+                  greet={function () {
+                    alert("Hello");
+                  }}
+                />
+                <TipoProps />
+              </>
+            );
 
 ## Estilos
 
+index.js
 
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+    import { Greeting, UserCard, TipoProps } from "./Greeting";
+    import { Button } from "./Button";
+    import { TaskCard } from "./Task";
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
 
-01:50:49 Tipos de componentes
-01:54:34 Event Handlers
-02:08:51 Fetch API
+    root.render(
+    <>
+    <TaskCard ready={false}></TaskCard>
+    </>
+    );
+
+Task.jsx
+
+    import "./task.css";
+
+    // Tambien puedes importarlo normalmente, esto se hace por componente
+
+    export function TaskCard(props) {
+    const cardStyle = { background: "#202020", color: "#FFF", padding: "20px" };
+
+        // Para poder aniadir estilos es necesario utilizar la propiedad style, pero para escribir dentro de esta propiedad le tenemos que pasar codigo JS. Y para las propiedades del style, es necesario escribirlo como un objeto. En el formato JSON.
+
+        return (
+          <div className="card">
+            <h1 style={{ cardStyle }}>Mi primera tarea</h1>
+            <span
+              style={props.ready ? { background: "green" } : { background: "red" }}
+            >
+              {props.ready === true ? "Tarea Realizada" : "Tarea Pendiente"}
+            </span>
+            <span className={props.ready ? "bg-green" : "bg-red"}>
+              {props.ready === true ? "Tarea Realizada" : "Tarea Pendiente"}
+            </span>
+          </div>
+        );
+        // Los nombres de las propiedades de etiquetas no son las mismas que en html.
+
+    }
+
+task.css
+
+    .card {
+    background-color: black;
+    color: aliceblue;
+    }
+
+    .bg-red {
+    background-color: red;
+    }
+
+    .bg-green {
+    background-color: green;
+    }
+
+## Tipos de componentes
+
+Ademas de las funciones para crear componentes, se pueden crear con clases
+
+Saludar.jsx
+
+    import { Component } from "react";
+
+    export class Saludar extends Component {
+      render() {
+        return <h1>Hello word</h1>;
+      }
+    }
+
+index.js
+
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+
+    import { Saludar } from "./Saludar";
+
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
+
+    root.render(
+      <>
+        <Saludar />
+      </>
+    );
+
+    // Aun es soportado por react, escriobir los componentes como clases
+
+## Event Handlers
+
+Manejador de eventos, sirve para hacer algo cuando ocurre uin evento.
+
+Button.jsx
+
+    import PropTypes from "prop-types";
+
+    export function Button({ text, name }) {
+      return (
+        <button
+          onClick={function () {
+            console.log("Hola mundo");
+          }}
+    // Sirve para determiar los tipos y si son requeridos
+    Button.propTypes = {
+      text: PropTypes.string.isRequired,
+    };
+
+    Button.defaultProps = {
+      name: "Some User",
+    };
+      );
+    }
+    // Sirve para determiar los tipos y si son requeridos
+    Button.propTypes = {
+      text: PropTypes.string.isRequired,
+    };
+
+    Button.defaultProps = {
+      name: "Some User",
+    };
+
+index.js
+
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+    import { Greeting, UserCard, TipoProps } from "./Greeting";
+    import { Button } from "./Button";
+    import { TaskCard } from "./Task";
+    import { Saludar } from "./Saludar";
+
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
+
+    //tambien puedo crear la funcion y luego llamarla.
+    // arrow function () => {}
+    const handleChange = (e) => {
+      console.log(e.target.value + "...");
+    };
+
+    root.render(
+      <>
+        <Button text="Click me" />
+        <TaskCard ready={false}></TaskCard>
+        <Saludar />
+        <input
+          type="text"
+          onChange={function (e) {
+            console.log(e.target.value + "...");
+          }}
+        />
+        <input type="text" onChange={handleChange} />
+        <input
+          type="text"
+          onDoubleClick={() => {
+            console.log("double click");
+          }}
+        />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            alert("Enviado");
+          }}
+        >
+          <h1>Registro de ususario</h1>
+          <button>Enviar</button>
+        </form>
+      </>
+    );
+    // Los diferentes eventos tienen sus propias propiedades, en este caso llamo a la promiedad como e, pero con ponerle cualquier nombre en los parametros los podemos utilizar.
+
+    // Con el metodo prevenDefault, se elimina el comportamiento por default dee ese evento
+
+## Fetch API
+
 02:16:04 Third Party modules, react-icons
 02:23:02 Arrays en React
 02:36:05 React Hooks
@@ -371,4 +548,3 @@ Button.jsx
 04:20:35 useContext
 04:30:04 TailwindCSS
 04:42:24 Despliegue Github Pages
-

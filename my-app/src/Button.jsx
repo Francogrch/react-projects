@@ -2,7 +2,11 @@ import PropTypes from "prop-types";
 
 export function Button({ text, name }) {
   return (
-    <button>
+    <button
+      onClick={function () {
+        console.log("Hola mundo");
+      }}
+    >
       {text} - {name}
     </button>
   );

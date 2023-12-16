@@ -2,24 +2,47 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Greeting, UserCard, TipoProps } from "./Greeting";
 import { Button } from "./Button";
+import { TaskCard } from "./Task";
+import { Saludar } from "./Saludar";
+
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement);
+
+//tambien puedo crear la funcion y luego llamarla.
+// arrow function () => {}
+const handleChange = (e) => {
+  console.log(e.target.value + "...");
+};
 
 root.render(
   <>
     <Button text="Click me" />
-    <Button text="Pay" />
-    <Button text="Hi" name="Diferente" />
-    <TipoProps
-      name="Ryan Ray"
-      amount={3000}
-      married={true}
-      points={[99, 33.3, 22.2]}
-      address={{ street: "123 Main Street", city: "New York" }}
-      greet={function () {
-        alert("Hello");
+    <TaskCard ready={false}></TaskCard>
+    <Saludar />
+    <input
+      type="text"
+      onChange={function (e) {
+        console.log(e.target.value + "...");
       }}
     />
-    <TipoProps />
+    <input type="text" onChange={handleChange} />
+    <input
+      type="text"
+      onDoubleClick={() => {
+        console.log("double click");
+      }}
+    />
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        alert("Enviado");
+      }}
+    >
+      <h1>Registro de ususario</h1>
+      <button>Enviar</button>
+    </form>
   </>
 );
+// Los diferentes eventos tienen sus propias propiedades, en este caso llamo a la promiedad como e, pero con ponerle cualquier nombre en los parametros los podemos utilizar.
+
+// Con el metodo prevenDefault, se elimina el comportamiento por default dee ese evento
