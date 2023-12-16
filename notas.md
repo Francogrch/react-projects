@@ -294,9 +294,66 @@ Esto se instala dentor de la carpeta del proyecto.
 
         npm install --save prop-types
 
+index.js
+
+        import React from "react";
+        import ReactDOM from "react-dom/client";
+        import { Greeting, UserCard, TipoProps } from "./Greeting";
+        import { Button } from "./Button";
+        const rootElement = document.getElementById("root");
+        const root = ReactDOM.createRoot(rootElement);
+
+        root.render(
+          <>
+            <Button text="Click me" />
+            <Button text="Pay" />
+            <Button text="Hi" name="Diferente" />
+            <TipoProps
+              name="Ryan Ray"
+              amount={3000}
+              married={true}
+              points={[99, 33.3, 22.2]}
+              address={{ street: "123 Main Street", city: "New York" }}
+              greet={function () {
+                alert("Hello");
+              }}
+            />
+            <TipoProps />
+          </>
+        );
+
+Button.jsx
+        import React from "react";
+        import ReactDOM from "react-dom/client";
+        import { Greeting, UserCard, TipoProps } from "./Greeting";
+        import { Button } from "./Button";
+        const rootElement = document.getElementById("root");
+        const root = ReactDOM.createRoot(rootElement);
+
+        root.render(
+          <>
+            <Button text="Click me" />
+            <Button text="Pay" />
+            <Button text="Hi" name="Diferente" />
+            <TipoProps
+              name="Ryan Ray"
+              amount={3000}
+              married={true}
+              points={[99, 33.3, 22.2]}
+              address={{ street: "123 Main Street", city: "New York" }}
+              greet={function () {
+                alert("Hello");
+              }}
+            />
+            <TipoProps />
+          </>
+        );
 
 
-01:36:31 Estilos
+## Estilos
+
+
+
 01:50:49 Tipos de componentes
 01:54:34 Event Handlers
 02:08:51 Fetch API
