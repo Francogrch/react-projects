@@ -1,48 +1,72 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { Greeting, UserCard, TipoProps } from "./Greeting";
-import { Button } from "./Button";
-import { TaskCard } from "./Task";
-import { Saludar } from "./Saludar";
 
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement);
 
-//tambien puedo crear la funcion y luego llamarla.
-// arrow function () => {}
-const handleChange = (e) => {
-  console.log(e.target.value + "...");
-};
+function Counter() {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <div>
+      <h1>Counter: {counter}</h1>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        Sumar
+      </button>
+      <button
+        onClick={() => {
+          setCounter(counter - 1);
+        }}
+      >
+        Decrementar
+      </button>
+      <button
+        onClick={() => {
+          setCounter(0);
+        }}
+      >
+        {" "}
+        Reiniciar{" "}
+      </button>
+    </div>
+  );
+}
+
+function Input() {
+  const [mensaje, setMensaje] = useState("");
+  const [counter, setCounter] = useState(0);
+  // Al momento del cambio se ejecuta la funcion pasada por parametro
+  useEffect(() => {
+    console.log("render");
+  }, [counter]);
+  // al poner como segundo parametro la una lista vacia, se ejecuta una sola vez, al momento de la creacion del componente
+  // El segundo paramentro es una lista, de los estados que van a ejecutar el useEffect al momento de modificarse. Por ejemplo aqui solamente se ejecuta al momento de modificarse el counter
+  // La funcion useEffect es dependiente de la variable counter
+
+  return (
+    <div>
+      <input onChange={(e) => setMensaje(e.target.value)} type="text" />{" "}
+      <button onClick={() => alert("El mensaje es " + mensaje)}>Save</button>
+      <hr />
+      <h1>Counter: {counter}</h1>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        Incrementar
+      </button>
+    </div>
+  );
+}
 
 root.render(
   <>
-    <Button text="Click me" />
-    <TaskCard ready={false}></TaskCard>
-    <Saludar />
-    <input
-      type="text"
-      onChange={function (e) {
-        console.log(e.target.value + "...");
-      }}
-    />
-    <input type="text" onChange={handleChange} />
-    <input
-      type="text"
-      onDoubleClick={() => {
-        console.log("double click");
-      }}
-    />
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        alert("Enviado");
-      }}
-    >
-      <h1>Registro de ususario</h1>
-      <button>Enviar</button>
-    </form>
+    <Counter />
+    <Input />
   </>
 );
-// Los diferentes eventos tienen sus propias propiedades, en este caso llamo a la promiedad como e, pero con ponerle cualquier nombre en los parametros los podemos utilizar.
-
-// Con el metodo prevenDefault, se elimina el comportamiento por default dee ese evento

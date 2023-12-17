@@ -173,47 +173,50 @@ Para poder exportar uan funcion desde otro archivo js, es necesario poner el exp
 
 Para importar se tiene que hacer como esta manera.
 
-index.js
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Greeting, UserCard } from "./Greeting";
-import Product, { Navbar } from "./Product";
+### index.js
 
-        const rootElement = document.getElementById("root");
-        const root = ReactDOM.createRoot(rootElement);
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+    import { Greeting, UserCard } from "./Greeting";
+    import Product, { Navbar } from "./Product";
 
-        root.render(
-          <>
-            <Greeting />
-            <UserCard />
-            <Product />
-            <Navbar />
-          </>
-        );
+            const rootElement = document.getElementById("root");
+            const root = ReactDOM.createRoot(rootElement);
 
-Product.js
-function Product() {
-return (
+            root.render(
+              <>
+                <Greeting />
+                <UserCard />
+                <Product />
+                <Navbar />
+              </>
+            );
 
-<div>
-<h1>Producto</h1>
-</div>
-);
-}
+### Product.js
 
-    export function Navbar() {
-      return <nav>Este es el navbar</nav>;
+    function Product() {
+    return (
+
+    <div>
+    <h1>Producto</h1>
+    </div>
+    );
     }
-    export default Product;
 
-Greeting.js
-export function Greeting() {
-return <h1>Componete de React</h1>;
-}
-
-        export function UserCard() {
-          return <h1>User Card</h1>;
+        export function Navbar() {
+          return <nav>Este es el navbar</nav>;
         }
+        export default Product;
+
+### Greeting.js
+
+    export function Greeting() {
+    return <h1>Componete de React</h1>;
+    }
+
+            export function UserCard() {
+              return <h1>User Card</h1>;
+            }
 
 ## Extension jsx
 
@@ -224,7 +227,7 @@ Para diferenciar los archivos js, con los archivos de componentes de react, se u
 Sirve para cambiar datos dentro de un componente.
 Para utilizar parametros del la funcion como atributos de la etiqueta, es necesario utilizar el parametro Props
 
-index.js
+### index.js
 
         import React from "react";
         import ReactDOM from "react-dom/client";
@@ -254,7 +257,7 @@ index.js
           </>
         );
 
-Greeting.jsx
+### Greeting.jsx
 
         export function Greeting(props) {
           return <h1>Hola {props.name}</h1>;
@@ -299,7 +302,7 @@ Esto se instala dentor de la carpeta del proyecto.
 
         npm install --save prop-types
 
-index.js
+### index.js
 
         import React from "react";
         import ReactDOM from "react-dom/client";
@@ -327,7 +330,7 @@ index.js
           </>
         );
 
-Button.jsx
+### Button.jsx
 
     import React from "react";
     import ReactDOM from "react-dom/client";
@@ -357,7 +360,7 @@ Button.jsx
 
 ## Estilos
 
-index.js
+### index.js
 
     import React from "react";
     import ReactDOM from "react-dom/client";
@@ -373,7 +376,7 @@ index.js
     </>
     );
 
-Task.jsx
+### Task.jsx
 
     import "./task.css";
 
@@ -401,7 +404,7 @@ Task.jsx
 
     }
 
-task.css
+### task.css
 
     .card {
     background-color: black;
@@ -420,7 +423,7 @@ task.css
 
 Ademas de las funciones para crear componentes, se pueden crear con clases
 
-Saludar.jsx
+### Saludar.jsx
 
     import { Component } from "react";
 
@@ -430,7 +433,7 @@ Saludar.jsx
       }
     }
 
-index.js
+### index.js
 
     import React from "react";
     import ReactDOM from "react-dom/client";
@@ -452,7 +455,7 @@ index.js
 
 Manejador de eventos, sirve para hacer algo cuando ocurre uin evento.
 
-Button.jsx
+### Button.jsx
 
     import PropTypes from "prop-types";
 
@@ -481,7 +484,7 @@ Button.jsx
       name: "Some User",
     };
 
-index.js
+### index.js
 
     import React from "react";
     import ReactDOM from "react-dom/client";
@@ -534,16 +537,519 @@ index.js
 
 ## Fetch API
 
-02:16:04 Third Party modules, react-icons
-02:23:02 Arrays en React
-02:36:05 React Hooks
-02:38:52 useState
-02:55:19 useEffect
-03:02:28 Tu primer aplicacion en React con Vitejs
-03:14:24 Mostrar lista de tareas
-03:24:15 Añadir tareas al formulario
-03:43:03 Separar componentes
-03:52:12 Eliminar Tarea
+Una de las API mas utilizadas es Fetch, sirve para traer datos de otro lugar (servidor, sitioweb)
+
+[JasonPlaceHolder](https://jsonplaceholder.typicode.com/)
+
+Retorna JSON, lista de objetos.
+
+### Posts.jsx
+
+    export const Post = () => {
+      return (
+        <button
+          onClick={() => {
+            fetch("https://jsonplaceholder.typicode.com/posts")
+              .then((response) => response.json())
+              .then((data) => console.log(data))
+              .catch((error) => console.error(error));
+          }}
+        >
+          Traer Datos
+        </button>
+      );
+    };
+    // Esto es una promesa (fetch then catch)
+    // Es mejor hacerlo con asicaway
+    // El catch sirve para que cuando ocurra un error ejecute lo que tiene por parametro
+
+### index.js
+
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+    import { Greeting, UserCard, TipoProps } from "./Greeting";
+    import { Button } from "./Button";
+    import { TaskCard } from "./Task";
+    import { Saludar } from "./Saludar";
+    import { Post } from "./Posts";
+
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
+
+    root.render(
+      <>
+        <Post />
+      </>
+    );
+
+## Third Party modules, react-icons
+
+Para poder utilizar modulos de terceros, o componentes hay que importarlos como componentes.
+
+En este caso utilizaremos el modulo de [react-icons](https://react-icons.github.io/react-icons/).
+
+Otros como:
+[MaterialUI](https://mui.com/)
+
+### Posts.jsx
+
+    import { VscGlobe, VscArchive } from "react-icons/vsc";
+
+    export const Post = () => {
+      return (
+        <button
+          onClick={() => {
+            fetch("https://jsonplaceholder.typicode.com/posts")
+              .then((response) => response.json())
+              .then((data) => console.log(data))
+              .catch((error) => console.error(error));
+          }}
+        >
+          <VscGlobe />
+          Traer Datos
+          <VscArchive />
+        </button>
+      );
+    };
+
+## Arrays en React
+
+Para generar imagenes aleatoras de usuarios sirve esta pagina [robohash](https://robohash.org/)
+
+Utilizaremos metodos de arreglos:
+
+- map((elem,index) => { elem.prop })
+- filter()
+- find()
+- sort()
+- reduce()
+- forEach()
+  Nota: no modifica arreglos, retornan otro.
+
+### index.js
+
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
+
+    const user = [
+      { id: 1, name: "Ryan Ray", image: "https://robohash.org/user1" },
+      { id: 2, name: "Joe", image: "https://robohash.org/user2" },
+      { id: 3, name: "Marc", image: "https://robohash.org/user3" },
+    ];
+    root.render(
+      <>
+        {user.map((user, index) => {
+          return (
+            <div key={index}>
+              <h1>Nombre: {user.name}</h1>
+              <img src={user.image} />
+            </div>
+          );
+        })}
+      </>
+    );
+    //Es necesario utilizar la propiedad key ya que react, al recorrer lo necesita.
+    // Este key tiene que estar en el elemento padre
+
+## React Hooks
+
+Son funciones que React nos provee para aniadir funcionalidades extras (interactivas).
+[ReactHooks](https://legacy.reactjs.org/docs/hooks-intro.html).
+[Listado de ReackHooks](https://legacy.reactjs.org/docs/hooks-reference.html)
+
+### useState
+
+#### index.js
+
+    import React, { useState } from "react";
+    import ReactDOM from "react-dom/client";
+
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
+
+    // React actualiza el estado mediante un hook de react, no mediante codigo de js.
+    // No se puede crear una variable e ir actualizandola con JS solamente
+
+    function Counter() {
+      // useState(inicializacion_de_counter)
+      const [counter, setCounter] = useState(0);
+      // state = [elemento, funcion]
+      // elemento es la inicializacion, y la funcion es la que se le aplica al momento del evento
+      // En JS puedo exreaer elementos con esta sintaxis.
+      // let [primerElemento, segundoElemento] = array
+
+      return (
+        <div>
+          <h1>Counter: {counter}</h1>
+          <button
+            onClick={() => {
+              setCounter(counter + 1);
+            }}
+          >
+            Sumar
+          </button>
+          <button
+            onClick={() => {
+              setCounter(counter - 1);
+            }}
+          >
+            Decrementar
+          </button>
+          <button
+            onClick={() => {
+              setCounter(0);
+            }}
+          >
+            {" "}
+            Reiniciar{" "}
+          </button>
+        </div>
+      );
+    }
+
+    function Input() {
+      const [mensaje, setMensaje] = useState("");
+
+      return (
+        <div>
+          <input onChange={(e) => setMensaje(e.target.value)} type="text" />{" "}
+          <button onClick={() => alert("El mensaje es " + mensaje)}>Save</button>
+        </div>
+      );
+    }
+
+    root.render(
+      <>
+        <Counter />
+        <Input />
+      </>
+    );
+
+### useEffect
+
+index.js
+
+    import React, { useState, useEffect } from "react";
+    import ReactDOM from "react-dom/client";
+
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
+
+    function Counter() {
+      const [counter, setCounter] = useState(0);
+
+      return (
+        <div>
+          <h1>Counter: {counter}</h1>
+          <button
+            onClick={() => {
+              setCounter(counter + 1);
+            }}
+          >
+            Sumar
+          </button>
+          <button
+            onClick={() => {
+              setCounter(counter - 1);
+            }}
+          >
+            Decrementar
+          </button>
+          <button
+            onClick={() => {
+              setCounter(0);
+            }}
+          >
+            {" "}
+            Reiniciar{" "}
+          </button>
+        </div>
+      );
+    }
+
+    function Input() {
+      const [mensaje, setMensaje] = useState("");
+      const [counter, setCounter] = useState(0);
+      // Al momento del cambio se ejecuta la funcion pasada por parametro
+      useEffect(() => {
+        console.log("render");
+      }, [counter]);
+      // al poner como segundo parametro la una lista vacia, se ejecuta una sola vez, al momento de la creacion del componente
+      // El segundo paramentro es una lista, de los estados que van a ejecutar el useEffect al momento de modificarse. Por ejemplo aqui solamente se ejecuta al momento de modificarse el counter
+      // La funcion useEffect es dependiente de la variable counter
+
+      return (
+        <div>
+          <input onChange={(e) => setMensaje(e.target.value)} type="text" />{" "}
+          <button onClick={() => alert("El mensaje es " + mensaje)}>Save</button>
+          <hr />
+          <h1>Counter: {counter}</h1>
+          <button
+            onClick={() => {
+              setCounter(counter + 1);
+            }}
+          >
+            Incrementar
+          </button>
+        </div>
+      );
+    }
+
+    root.render(
+      <>
+        <Counter />
+        <Input />
+      </>
+    );
+
+## Tu primer aplicacion en React con Vitejs
+
+[ViteJs](https://vitejs.dev/guide/) es una alternativa a create-react-app
+
+    npm create vite
+
+Dentro de la carpeta del proyecto
+
+    npm install
+
+Para comenzarlo:
+
+    npm run dev
+
+En Vite es necesario utilizar extensiones .jsx
+
+En assets van las imagenes.
+y en main.jsx es el equivalente al index.js
+
+Para construir (dist) se ejecuta
+
+    npm run build
+
+### Extensiones utiles
+
+Emmet examples:
+ul>li\*4>a{Enlace $}
+
+ES7+ React:
+rfce : crea componente
+imp : importar
+clg : console.log()
+
+## Mostrar lista de tareas
+
+### TaskList.jsx
+
+    import { tasks as data } from "./tasks";
+    import { useState, useEffect } from "react";
+
+    console.log(data);
+
+    function TaskList() {
+      const [tasks, setTasks] = useState([]);
+
+      // Este useEffect es para incializar el task con los datos del areglo del otro archivo
+      useEffect(() => {
+        setTasks(data);
+      }, []);
+
+      if (tasks.lenght === 0) {
+        return <h1>No hay tareas aun</h1>;
+      }
+
+      return (
+        <div>
+          {tasks.map((task) => (
+            <div key={task.id}>
+              <h1>{task.title}</h1>
+              <p>{task.description}</p>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    export default TaskList;
+
+### Añadir tareas al formulario
+
+UI componet Tree
+Al tener componentes separados, es necesario pasarle al componente padre la variable que se quiere modificar.
+
+App.jsx
+
+    import TaskList from "./TaskList";
+    import TaskForm from "./TaskForm";
+    import { tasks as data } from "./tasks";
+    import { useState, useEffect } from "react";
+
+    function App() {
+      const [tasks, setTasks] = useState([]);
+
+      // Este useEffect es para incializar el task con los datos del areglo del otro archivo
+      useEffect(() => {
+        setTasks(data);
+      }, []);
+
+      function createTask(taskTitle) {
+        //de esta manera se puede agregar elementos al final, con ...tasks lo copia
+
+        setTasks([
+          ...tasks,
+          {
+            title: taskTitle,
+            id: tasks.length,
+            description: taskTitle,
+          },
+        ]);
+      }
+
+      return (
+        <>
+          <TaskForm createTask={createTask} />
+          <TaskList tasks={tasks} />
+        </>
+      );
+    }
+
+    export default App;
+
+TaskForm.jsx
+
+    import { useState } from "react";
+
+    // eslint-disable-next-line react/prop-types
+    function TaskForm({ createTask }) {
+      const [title, setTitle] = useState("");
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        createTask(title);
+      };
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Ingrese la tarea"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <button>Guardar</button>
+        </form>
+      );
+    }
+
+    export default TaskForm;
+
+TaskList.jsx
+
+    /* eslint-disable react/prop-types */
+    function TaskList({ tasks }) {
+      if (tasks.lenght === 0) {
+        return <h1>No hay tareas aun</h1>;
+      }
+
+      return (
+        <div>
+          {tasks.map((task) => (
+            <div key={task.id}>
+              <h1>{task.title}</h1>
+              <p>{task.description}</p>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    export default TaskList;
+
+## Separar componentes
+
+Es dividir secciones de componentes en otros componentes
+
+Para ordenar los archivos dentro del src, se puede agregar la carpeta components
+Ademas dentro de src se puede crear otra carpeta llamada data
+para guardar los archivos con data
+
+TaskCard.jsx
+
+    /* eslint-disable react/prop-types */
+    function TaskCard({ task }) {
+      console.log(task);
+      return (
+        <div>
+          <h1>{task.title}</h1>
+          <p>{task.description}</p>
+        </div>
+      );
+    }
+
+    export default TaskCard;
+
+TaskList.jsx
+
+    import TaskCard from "./TaskCard";
+    /* eslint-disable react/prop-types */
+    function TaskList({ tasks }) {
+      if (tasks.lenght === 0) {
+        return <h1>No hay tareas aun</h1>;
+      }
+
+      return (
+        <div>
+          {tasks.map((task) => (
+            <TaskCard task={task} key={task.id} />
+          ))}
+        </div>
+      );
+    }
+
+    export default TaskList;
+
+App.jsx
+
+    import TaskList from "./components/TaskList";
+    import TaskForm from "./components/TaskForm";
+    import { tasks as data } from "./data/tasks";
+    import { useState, useEffect } from "react";
+
+    function App() {
+      const [tasks, setTasks] = useState([]);
+
+      // Este useEffect es para incializar el task con los datos del areglo del otro archivo
+      useEffect(() => {
+        setTasks(data);
+      }, []);
+
+      function createTask(task) {
+        //de esta manera se puede agregar elementos al final, con ...tasks lo copia
+
+        setTasks([
+          ...tasks,
+          {
+            title: task.title,
+            id: tasks.length,
+            description: task.description,
+          },
+        ]);
+      }
+
+      return (
+        <>
+          <TaskForm createTask={createTask} />
+          <TaskList tasks={tasks} />
+        </>
+      );
+    }
+
+    export default App;
+
+## Eliminar Tarea
+
 04:04:12 crear Contexto
 04:20:35 useContext
 04:30:04 TailwindCSS
